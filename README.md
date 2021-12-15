@@ -1,2 +1,2 @@
 # server-manager
-Server Managaer Application
+Server Manager Application
