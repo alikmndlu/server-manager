@@ -8,12 +8,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Collection;
+import java.util.Random;
 
 import static com.alikmndlu.servermanager.model.enumeration.ServerStatus.SERVER_DOWN;
 import static com.alikmndlu.servermanager.model.enumeration.ServerStatus.SERVER_UP;
@@ -69,6 +71,13 @@ public class ServerServiceImpl implements ServerService {
     }
 
     private String setServerImageUrl() {
-        return null;
+        String[] imageNames = {
+                "server1.png",
+                "server2.png",
+                "server3.png",
+                "server4.png"
+        };
+        return ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/sever/image/" + imageNames[new Random().nextInt(imageNames.length)]).toUriString();
     }
 }
